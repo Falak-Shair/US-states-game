@@ -7,13 +7,13 @@ image = "blank_states_img.gif"
 screen.addshape(image)
 turtle.shape(image)
 
-
 data = pandas.read_csv("50_states.csv")
 all_states = data["state"].to_list()
 
 guesses_states = []
 while len(guesses_states) < 50:
-    answer_state = screen.textinput(title=f"{len(guesses_states)}/50 states correct", prompt="Guess the U.S state").title()
+    answer_state = screen.textinput(title=f"{len(guesses_states)}/50 states correct",
+                                    prompt="Guess the U.S state").title()
 
     if answer_state == "Exit":
         missing_states = [state for state in all_states if state not in guesses_states]
@@ -29,5 +29,3 @@ while len(guesses_states) < 50:
         state_data = data[data.state == answer_state]
         t.goto(int(state_data.x), int(state_data.y))
         t.write(state_data.state.item())
-
-
